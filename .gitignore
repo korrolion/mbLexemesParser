@@ -1,0 +1,6 @@
+.idea
+*.csv
+*.strings
+export/targetProj/Locale/*
+source/sourceProj/Locale/*
+source/targetProj/Locale/*
