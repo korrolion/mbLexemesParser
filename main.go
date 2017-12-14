@@ -51,8 +51,21 @@ func importData() {
 }
 
 func saveToFile(lang, result string) {
+
+	pathLocale := "export/targetProj/Locale/"//"import/results/Locale/"
+
+	if _, err := os.Stat(pathLocale); os.IsNotExist(err) {
+		os.Mkdir(pathLocale, os.ModePerm)
+	}
+
+	path := pathLocale + lang + ".lproj/"
+
+	if _, err := os.Stat(path); os.IsNotExist(err) {
+		os.Mkdir(path, os.ModePerm)
+	}
+
 	// open output file
-	fo, err := os.Create("export/targetProj/Locale/" + lang + ".lproj/Localizable.strings")
+	fo, err := os.Create(path + "Localizable.strings")
 	if err != nil {
 		panic(err)
 	}
@@ -63,5 +76,5 @@ func saveToFile(lang, result string) {
 		}
 	}()
 
-	//fmt.Fprint(fo, result)
+	fmt.Fprint(fo, result)
 }
